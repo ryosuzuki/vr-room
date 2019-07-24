@@ -6,30 +6,32 @@
   <title>VR room</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
   <script src="https://rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script>
   <!-- <script src="https://rawgit.com/archilogic-com/3dio-js/architectural-toolkit/build/3dio.js"></script> -->
-  <script src="https://dist.3d.io/3dio-js/1.x.x/3dio.min.js"></script>
+  <script src="https://dist.3d.io/3dio-js/2.x.x/3dio.min.js"></script>
   <script src="lib/aframe-template-component.js"></script>
   <!-- <link rel="stylesheet" href="style.css"></style> -->
 
   <script>
     Handlebars.registerHelper("add", function(lvalue, rvalue, options) {
-        lvalue = parseFloat(lvalue);
-        rvalue = parseFloat(rvalue);
+      lvalue = parseFloat(lvalue);
+      rvalue = parseFloat(rvalue);
 
-        return lvalue + rvalue;
+      return lvalue + rvalue;
     });
   </script>
 </head>
 <body>
-  <a-scene io3d-lighting anti-alias="true" vr-mode-ui="enabled: false">
-    <a-entity id="office" template="src: components/layout1.hbs; type: handlebars" data-length="6.25"></a-entity>
+  <a-scene io3d-lighting anti-alias="true" vr-mode-ui="enabled: true">
+    <a-entity id="office" template="src: components/layout1.hbs; type: handlebars" data-length="6.25" position="-2 0 -0.7"></a-entity>
 
     <a-entity id="furniture" template="src: components/furniture.html; type: handlebars"></a-entity>
 
-    <a-entity id="target" position="5 0.1 3"></a-entity>
-    <a-entity id="cam" camera="fov: 50; zoom: 1;" position="0 10 10" orbit-controls="invertZoom: true; autoRotate: false; target: #target; enableDamping: true; dampingFactor: 0.1;minDistance:4;maxDistance:100;maxPolarAngle:1.8; enableKeys: true; autoVRLookCam: false; maxPolarAngle: 1.57"></a-entity>
+    <!-- <a-entity id="target" position="5 0.1 3"></a-entity> -->
+    <a-entity id="camera" camera="active: true; fov: 50; zoom: 1;" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity>
+
+    <!-- <a-entity id="cam" camera="" position="0 10 10" orbit-controls="invertZoom: true; autoRotate: false; target: #target; enableDamping: true; dampingFactor: 0.1;minDistance:4;maxDistance:100;maxPolarAngle:1.8; enableKeys: true; autoVRLookCam: true; maxPolarAngle: 1.57"></a-entity> -->
   </a-scene>
 </body>
 </html>
