@@ -1,3 +1,8 @@
+// const peer = require('peer')
+// const PeerServer = peer.PeerServer
+// const server = PeerServer({ port: 8080, path: '/' })
+
+
 const express = require('express')
 const http = require('http')
 const path = require('path')

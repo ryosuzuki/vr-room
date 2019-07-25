@@ -6,13 +6,19 @@
   <title>VR room</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
   <!-- <script src="https://rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script> -->
   <!-- <script src="https://rawgit.com/archilogic-com/3dio-js/architectural-toolkit/build/3dio.js"></script> -->
-  <!-- <script src="https://dist.3d.io/3dio-js/2.x.x/3dio.min.js"></script> -->
-  <script src="3dio.js"></script>
+  <script src="https://dist.3d.io/3dio-js/2.x.x/3dio.min.js"></script>
+  <!-- <script src="3dio.js"></script> -->
   <script src="lib/aframe-template-component.js"></script>
   <!-- <link rel="stylesheet" href="style.css"></style> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.0.2/peerjs.min.js"></script>
+
+  <script>
+    const peer = new Peer('someid', {host: 'localhost', port: 9000, path: '/myapp'});
+  </script>
 
   <script>
     Handlebars.registerHelper("add", function(lvalue, rvalue, options) {
@@ -26,9 +32,7 @@
 <body>
   <a-scene io3d-lighting anti-alias="true" vr-mode-ui="enabled: true">
 
-    <!-- <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity> -->
-    <a-camera></a-camera>
-
+    <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity>
 
     <a-entity id="office" template="src: components/layout1.hbs; type: handlebars" data-length="6.25" position="-2 0 -0.7"></a-entity>
 
