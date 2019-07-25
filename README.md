@@ -8,10 +8,10 @@ git clone git@github.com:ryosuzuki/vr-room.git
 cd vr-room
 ```
 
-Install and run on localhost:8080
+Install and run on `localhost:8080`
 ```
 npm install 
-node server
+node server.js
 ```
 
 ## Install Ngrok 
@@ -26,7 +26,7 @@ unzip ngrok-stable-darwin-amd64.zip
 mv ngrok /usr/local/bin/
 ```
 
-Create an alias (`~/.zshrc`) by adding `alias ngrok="/usr/local/bin/ngrok"`
+Create an alias (`~/.zshrc`) by adding `alias ngrok="/usr/local/bin/ngrok"` and reload with `source ~/.zshrc`
 
 Register it 
 ```
@@ -36,7 +36,7 @@ ngrok authtoken YOUR_TOKEN
 ## Run the server and deploy
 ```
 cd vr-room 
-node server
+node server.js
 ```
 
 and open another tab 
