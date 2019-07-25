@@ -44,5 +44,7 @@ and open another tab
 ngrok http 8080
 ```
 
-then access https://[ngrok-id].ngrok.io 
+then access `https://[ngrok-id].ngrok.io`
+
+![](https://user-images.githubusercontent.com/1428255/61892116-f857c900-aebf-11e9-9327-600805a28b85.png)
 
