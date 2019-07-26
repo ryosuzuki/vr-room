@@ -13,7 +13,10 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
-qualisys(io)
+const mocap = false
+if (mocap) {
+  qualisys(io)
+}
 
 app.use(bodyParser.json())
 app.use('/', express.static(__dirname + '/'))
@@ -27,6 +30,12 @@ server.listen(8080, () => {
 
 io.on('connection', (socket) => {
   console.log('socket connected')
+
+  if (!mocap) {
+    setInterval(() => {
+      io.sockets.emit('frame', 'frame-data')
+    }, 1000)
+  }
 
   socket.on('move', (data) => {
     console.log(data)
