@@ -1,0 +1,28 @@
+{
+  "name": "vr-room",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryosuzuki/vr-room.git"
+  },
+  "author": "Ryo Suzuki <ryosuzk@googlemail.com> (http://ryosuzuki.org/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryosuzuki/vr-room/issues"
+  },
+  "homepage": "https://github.com/ryosuzuki/vr-room#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "peer": "^0.2.10",
+    "peerjs": "^1.0.2"
+  }
+}
