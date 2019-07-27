@@ -23,11 +23,12 @@
 
   <script>
     const socket = io.connect('http://localhost:8080/')
-    let x = 3
     socket.on('frame', (data) => {
-      console.log(data)
-      x = x-0.01
-      document.querySelector('#camera').object3D.position.set(x, 1.5, 2)
+      let bodies = data.components['6dEuler'].rigidBodies
+      let body = bodies[0]
+      if (body) {
+        document.querySelector('#camera').object3D.position.set(body.x, body.y, body.z)
+      }
     })
 
     Handlebars.registerHelper("add", function(lvalue, rvalue, options) {

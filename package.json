@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "peer": "^0.2.10",
     "peerjs": "^1.0.2",
-    "qualisys-rt": "^0.3.1",
+    "qualisys-rt": "^0.2.4",
     "socket.io": "^2.2.0"
   }
 }
