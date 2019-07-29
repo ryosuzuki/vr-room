@@ -24,7 +24,7 @@
   <script>
     const socket = io() // io.connect('http://localhost:8080/')
 
-    const mocap = false
+    const mocap = true
     let x = 2
     socket.on('frame', (data) => {
       if (!mocap) {
@@ -36,7 +36,7 @@
       let bodies = data.components['6dEuler'].rigidBodies
       let body = bodies[0]
       if (body) {
-        document.querySelector('#camera').object3D.position.set(body.x, body.y, body.z)
+        document.querySelector('#camera').object3D.position.set(body.x/1000.0, body.z/1000.0, body.y/1000.0)
       }
     })
 
