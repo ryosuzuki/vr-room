@@ -37,6 +37,10 @@ io.on('connection', (socket) => {
     }, 1000)
   }
 
+  socket.on('click', (data) => {
+    console.log(data)
+  })
+
   socket.on('move', (data) => {
     console.log(data)
   })
