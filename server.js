@@ -1,8 +1,3 @@
-// const peer = require('peer')
-// const PeerServer = peer.PeerServer
-// const server = PeerServer({ port: 8080, path: '/' })
-
-
 const express = require('express')
 const http = require('http')
 const path = require('path')
@@ -13,7 +8,7 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
-const mocap = true
+const mocap = false
 if (mocap) {
   qualisys(io)
 }
