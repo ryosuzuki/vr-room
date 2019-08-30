@@ -16,10 +16,7 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.0.2/peerjs.min.js"></script>
-
-  <script>
-    const peer = new Peer('someid', {host: 'localhost', port: 9000, path: '/myapp'});
-  </script>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
 
   <script>
     const socket = io() // io.connect('http://localhost:8080/')
@@ -51,7 +48,17 @@
 <body>
   <a-scene io3d-lighting anti-alias="true" vr-mode-ui="enabled: true">
 
-    <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity>
+    <a-entity id="cameraRig">
+      <!-- camera -->
+      <a-entity id="camera" camera wasd-controls look-controls position="3 1.5 3" data-aframe-default-camera></a-entity>
+      <!-- hand controls -->
+      <a-entity id="left-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;"></a-entity>
+      <a-entity id="right-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;"></a-entity>
+    </a-entity>
+
+      <a-entity laser-controls="hand: right" daydream-controls="" gearvr-controls="" oculus-go-controls="" oculus-touch-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls="" teleport-controls></a-entity>
+
+    <!-- <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity> -->
 
     <a-entity id="office" template="src: components/layout1.hbs; type: handlebars" data-length="6.25" position="-2 0 -0.7"></a-entity>
 
