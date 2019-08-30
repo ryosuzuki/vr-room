@@ -8,7 +8,7 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
-const mocap = false
+const mocap = true
 if (mocap) {
   qualisys(io)
 }
@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
 
   if (!mocap) {
     setInterval(() => {
-      io.sockets.broadcast.emit('frame', 'frame-data')
+      io.sockets.emit('frame', 'frame-data')
     }, 1000)
   }
 

@@ -12,7 +12,7 @@
 
   <script>
     const socket = io()
-    const mocap = false
+    const mocap = true
     let x = 2
     socket.on('frame', (data) => {
       let bodies = data.components['6dEuler'].rigidBodies
