@@ -22,6 +22,7 @@
         document.querySelector('#cameraRig').object3D.position.set(body.x/1000.0, body.z/1000.0, body.y/1000.0)
       }
     })
+    
     Handlebars.registerHelper("add", function(lvalue, rvalue, options) {
       lvalue = parseFloat(lvalue);
       rvalue = parseFloat(rvalue);
