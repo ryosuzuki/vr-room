@@ -33,9 +33,18 @@ io.on('connection', (socket) => {
 
   if (!mocap) {
     setInterval(() => {
-      io.sockets.emit('frame', 'frame-data')
+      io.sockets.broadcast.emit('frame', 'frame-data')
     }, 1000)
   }
+
+  socket.on('click', (data) => {
+    console.log(data)
+  })
+
+  socket.on('teleport', (data) => {
+    console.log(data)
+    socket.broadcast.emit('teleport', data)
+  })
 
   socket.on('move', (data) => {
     console.log(data)
