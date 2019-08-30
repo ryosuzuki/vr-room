@@ -13,7 +13,7 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
-const mocap = true
+const mocap = false
 if (mocap) {
   qualisys(io)
 }

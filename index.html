@@ -24,7 +24,7 @@
   <script>
     const socket = io() // io.connect('http://localhost:8080/')
 
-    const mocap = true
+    const mocap = false
     let x = 2
     socket.on('frame', (data) => {
       if (!mocap) {
