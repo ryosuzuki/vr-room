@@ -1,8 +1,3 @@
-// const peer = require('peer')
-// const PeerServer = peer.PeerServer
-// const server = PeerServer({ port: 8080, path: '/' })
-
-
 const express = require('express')
 const http = require('http')
 const path = require('path')
@@ -33,6 +28,11 @@ io.on('connection', (socket) => {
 
   socket.on('click', (data) => {
     console.log(data)
+  })
+
+  socket.on('teleport', (data) => {
+    console.log(data)
+    socket.broadcast.emit('teleport', data)
   })
 
   socket.on('move', (data) => {

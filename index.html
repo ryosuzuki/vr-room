@@ -27,28 +27,12 @@
       lvalue = parseFloat(lvalue);
       rvalue = parseFloat(rvalue);
       return lvalue + rvalue;
-    });
-  </script>
-
-  <script>
-    AFRAME.registerComponent('input-listener', {
-      init: function () {
-        this.el.addEventListener('triggerdown', function (e) {
-          socket.emit('click', true)
-          this.emit('teleportstart')
-        })
-        this.el.addEventListener('triggerup', function (e) {
-          socket.emit('click', true)
-          this.emit('teleportend')
-        })
-      }
     })
   </script>
 
   <script>
-    const chairId = 'id:b81c89db-65cf-4518-bd58-a057ffbb6dea'
+    const chairToken = 'id:b81c89db-65cf-4518-bd58-a057ffbb6dea'
     let chairs = []
-
     let min = -2
     let max = 2
     for (let i = 0; i < 5; i++) {
@@ -63,11 +47,44 @@
         z: 0
       }
       let chair = {
-        position: `${position.x} ${position.y} ${position.z}`,
-        rotation: `${rotation.x} ${rotation.y} ${rotation.z}`,
+        id: i,
+        position: position,
+        rotation: rotation,
+        relative: position,
       }
       chairs.push(chair)
     }
+    let origin = { x: 0, y: 1.5, z: 0 }
+    socket.emit('teleport', { origin: origin, chairs: chairs })
+  </script>
+
+  <script>
+    AFRAME.registerComponent('input-listener', {
+      init: function () {
+        this.el.addEventListener('triggerdown', function (e) {
+          socket.emit('click', true)
+          this.emit('teleportstart')
+        })
+        this.el.addEventListener('triggerup', function (e) {
+          socket.emit('click', true)
+          this.emit('teleportend')
+        })
+        this.el.addEventListener('teleportend', function (e) {
+          let camera = document.querySelector('#cameraRig')
+          let origin = camera.getAttribute('position')
+          for (let chair of chairs) {
+            let position = chair.position
+            let relative = {
+              x: position.x - origin.x,
+              y: 0,
+              z: position.z - origin.z
+            }
+            chair.relative = relative
+          }
+          socket.emit('teleport', { origin: origin, chairs: chairs })
+        })
+      }
+    })
   </script>
 
 </head>
@@ -100,9 +117,12 @@
     let scene = document.querySelector('#scene')
     for (let chair of chairs) {
       let chairEntity = document.createElement('a-entity')
-      chairEntity.setAttribute('io3d-furniture', chairId)
-      chairEntity.setAttribute('position', chair.position)
-      chairEntity.setAttribute('rotation', chair.rotation)
+      let position = chair.position
+      let rotation = chair.rotation
+      chairEntity.setAttribute('id', `chair-${chair.id}`)
+      chairEntity.setAttribute('io3d-furniture', chairToken)
+      chairEntity.setAttribute('position', `${position.x} ${position.y} ${position.z}`)
+      chairEntity.setAttribute('rotation', `${rotation.x} ${rotation.y} ${rotation.z}`)
       scene.appendChild(chairEntity)
     }
   </script>
