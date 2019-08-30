@@ -46,26 +46,52 @@
   </script>
 
   <script>
-    document.querySelector('#controller').addEventListener('trackpaddown', function(event) {
-      let a = document.querySelector('#office')
-      a.parentNode.removeChild(a)
-      socket.emit('click', true)
+    AFRAME.registerComponent('input-listener', {
+      init: function () {
+        this.el.addEventListener('triggerdown', function (e) {
+          // let a = document.querySelector('#office')
+          // a.parentNode.removeChild(a)
+          socket.emit('click', true)
+          this.emit('teleportstart')
+        })
+        this.el.addEventListener('triggerup', function (e) {
+          // let a = document.querySelector('#office')
+          // a.parentNode.removeChild(a)
+          socket.emit('click', true)
+          this.emit('teleportend')
+        })
+
+        /*
+        this.el.addEventListener('gripdown', function (e) {
+          let a = document.querySelector('#office')
+          a.parentNode.removeChild(a)
+          socket.emit('click', true)
+        })
+        */
+      }
     })
+
   </script>
 </head>
 <body>
   <a-scene io3d-lighting anti-alias="true" vr-mode-ui="enabled: true">
 
-    <!--
     <a-entity id="cameraRig">
       <a-entity id="camera" camera wasd-controls look-controls position="3 1.5 3" data-aframe-default-camera></a-entity>
-      <a-entity id="left-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;"></a-entity>
-      <a-entity id="right-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;"></a-entity>
+      <a-entity
+        id="controller"
+        teleport-controls="
+          cameraRig: #cameraRig;
+          teleportOrigin: #camera;
+          startEvents: teleportstart;
+          endEvents: teleportend;
+        "
+        gearvr-controls=""
+        input-listener
+      ></a-entity>
     </a-entity>
-  -->
 
-    <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity>
-    <a-entity id="controller" laser-controls="hand: right" gearvr-controls=""></a-entity>
+    <!-- <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity> -->
 
     <a-entity id="office" template="src: components/layout1.hbs; type: handlebars" data-length="6.25" position="-2 0 -0.7"></a-entity>
 
