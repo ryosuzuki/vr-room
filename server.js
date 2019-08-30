@@ -31,12 +31,6 @@ server.listen(8080, () => {
 io.on('connection', (socket) => {
   console.log('socket connected')
 
-  if (!mocap) {
-    setInterval(() => {
-      io.sockets.emit('frame', 'frame-data')
-    }, 1000)
-  }
-
   socket.on('click', (data) => {
     console.log(data)
   })
