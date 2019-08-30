@@ -1,67 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-  <title>VR room</title>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-  <!-- <script src="https://rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script> -->
-  <!-- <script src="https://rawgit.com/archilogic-com/3dio-js/architectural-toolkit/build/3dio.js"></script> -->
-  <script src="https://dist.3d.io/3dio-js/2.x.x/3dio.min.js"></script>
-  <script src="lib/aframe-template-component.js"></script>
-  <script src="lib/TrackedObj.js"></script>
-  <!-- <link rel="stylesheet" href="style.css"></style> -->
-  <script src="/socket.io/socket.io.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.0.2/peerjs.min.js"></script>
-
-  <script>
-    const peer = new Peer('someid', {host: 'localhost', port: 9000, path: '/myapp'});
-  </script>
-
-  <script>
-    Handlebars.registerHelper("add", function(lvalue, rvalue, options) {
-      lvalue = parseFloat(lvalue);
-      rvalue = parseFloat(rvalue);
-
-      return lvalue + rvalue;
-    });
+ <meta charset="utf-8">
+ <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+ <title>VR room</title>  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+ <script src="lib/TrackedObj.js"></script>
+ <script src="/socket.io/socket.io.js"></script>
+ <script>
     initSockets();
   </script>
 </head>
 <body>
-  <a-scene io3d-lighting anti-alias="true" vr-mode-ui="enabled: true">
-
-    <!-- <a-entity tracked-obj="objID: 1; xMult: 1; yMult: 1; zMult: 1">
-      <a-entity rotation="0 90 0">
-        <a-entity rotation="0 0 120">
-          <a-entity position="0 -1.6 0">
-            <a-entity id="camera" camera="active: true"></a-entity>
-          </a-entity>
-        </a-entity>
-      </a-entity>
-    </a-entity> -->
-    <a-entity tracked-obj="objID: 1">
-      <a-entity rotation="0 90 0">
-          <a-entity rotation="0 0 0">
-            <a-entity rotation="0 0 0">
-              <a-entity position="0 0 0">
-                <a-entity camera="active: true"></a-entity>
-              </a-entity>
-            </a-entity>
-          </a-entity>
-      </a-entity>
-    </a-entity>
-    <!-- <a-entity id="camera" camera="active: true" look-controls wasd-controls position="3 1.5 3" data-aframe-default-camera></a-entity> -->
-
-    <a-entity id="office" template="src: components/layout1.hbs; type: handlebars" data-length="6.25" position="-5.25 0 -3.25"></a-entity>
-
-    <a-entity id="furniture" template="src: components/furniture.html; type: handlebars" position="-3.15 0 -2.6" ></a-entity>
-
-    <a-box id="robot1" tracked-obj="objID: 0" color="tomato" depth=".25" height=".25" width=".25"></a-box>
-  </a-scene>
-</body>
-</html>
+ <a-scene background="color: #FAFAFA">
+   <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+   <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+   <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+   <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+   <a-entity tracked-obj="objID: 1">
+     <a-entity rotation="0 90 0">
+         <a-entity rotation="0 0 0">
+           <a-entity rotation="0 0 0">
+             <a-entity position="0 0 0">
+               <a-entity camera="active: true"></a-entity>
+             </a-entity>
+           </a-entity>
+         </a-entity>
+     </a-entity>
+   </a-entity>  </a-scene>
+</body></html>
