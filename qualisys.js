@@ -7,7 +7,6 @@ function init(io) {
   })
 
   qtmReader.on('frame', function(data) {
-    //console.log(data)
     io.sockets.emit('frame', data)
   })
 
