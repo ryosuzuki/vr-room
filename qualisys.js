@@ -3,7 +3,7 @@ const qtmReader = new QTMrt.Api()
 
 function init(io) {
   io.on('connection', (socket) => {
-    console.log(socket);
+    // console.log(socket);
   })
 
   qtmReader.on('frame', function(data) {

@@ -12,14 +12,19 @@
 
   <script>
     const socket = io()
-    const mocap = false
-    let x = 2
+    const mocap = true
+    window.origin = { x: 0, y: 0, z: 0 }
+
     socket.on('frame', (data) => {
       let bodies = data.components['6dEuler'].rigidBodies
       let objID = 0
       let body = bodies[objID]
       if (body) {
-        document.querySelector('#cameraRig').object3D.position.set(body.x/1000.0, body.z/1000.0, body.y/1000.0)
+        document.querySelector('#cameraRig').object3D.position.set(
+          window.origin.x + body.x/1000.0,
+          body.z/1000.0 - 1.5,
+          window.origin.z - body.y/1000.0
+        )
       }
     })
     Handlebars.registerHelper("add", function(lvalue, rvalue, options) {
@@ -53,8 +58,7 @@
       }
       chairs.push(chair)
     }
-    let origin = { x: 0, y: 1.5, z: 0 }
-    socket.emit('teleport', { origin: origin, chairs: chairs })
+    socket.emit('teleport', { origin: window.origin, chairs: chairs })
   </script>
 
   <script>
@@ -80,6 +84,7 @@
             }
             chair.relative = relative
           }
+          window.origin = origin.clone()
           socket.emit('teleport', { origin: origin, chairs: chairs })
         })
       }
@@ -93,7 +98,7 @@
   <a-scene id="scene" io3d-lighting anti-alias="true" vr-mode-ui="enabled: true">
 
     <a-entity id="cameraRig">
-      <a-entity id="camera" camera wasd-controls look-controls position="0 1.5 0" data-aframe-default-camera></a-entity>
+      <a-entity id="camera" camera wasd-controls look-controls position="0 0 0" data-aframe-default-camera></a-entity>
       <a-entity
         id="controller"
         teleport-controls="
