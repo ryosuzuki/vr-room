@@ -25,6 +25,6 @@
     "peer": "^0.2.10",
     "peerjs": "^1.0.2",
     "qualisys-rt": "^0.2.4",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.4.0"
   }
 }
