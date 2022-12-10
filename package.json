@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ryosuzuki/vr-room#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "peer": "^0.2.10",
     "peerjs": "^1.0.2",
     "qualisys-rt": "^0.2.4",
